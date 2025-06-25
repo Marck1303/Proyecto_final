@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/styles/output.css">
+    <script src="./src/scripts/main.js" defer type="module" defer></script>
+    <script src="./src/scripts/filtros.js" type="module" defer></script>
+    <title>Hoteles</title>
+</head>
+<body>
+    <!-- Header -->
+<header class="flex flex-col items-center justify-between gap-4 px-4 py-6 md:flex-row md:items-center md:justify-between lg:px-20">
+    <!-- Logo -->
+    <div class="flex items-center space-x-2">
+      <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 0C7 10 0 14 0 20c0 2 2 4 4 4s4-2 4-4c0-3-1-4-1-6 0-2 3-4 5-4s5 2 5 4c0 2-1 3-1 6 0 2 2 4 4 4s4-2 4-4c0-6-7-10-12-20z"/>
+      </svg>
+      <span class="text-xl font-bold text-gray-800">windbnb</span>
+    </div>
+  
+    <!-- Filtros -->
+    <div class="flex items-center rounded-xl overflow-hidden shadow-md px-4 space-x-3 w-full md:w-auto py-5"> 
+      <input  type="text" placeholder="Add location" class="text-sm w-full md:w-40 focus:outline-none" readonly />
+      <input  type="text" placeholder="Add guests" class="text-sm w-full md:w-40 focus:outline-none" readonly />
+      <button class="text-red-500">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M21 20l-5.6-5.6a7 7 0 10-1.4 1.4L20 21zM10 16a6 6 0 110-12 6 6 0 010 12z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+  
+  <!-- Sección de resultados-->
+  <section class="px-4 lg:px-13 pt-2">
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-semibold">Stays in Finland</h2>
+        <span id="contador-estancias" class="text-sm text-gray-500 hidden md:block">12+ stays</span>
+    </div>
+  
+    <div id="contenedor-hoteles" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+    </div>
+  </section>
+  
+<!-- Modal de Búsqueda -->
+<div id="modal-busqueda" class="fixed inset-0 z-50 hidden bg-white bg-opacity-95 px-4 py-6 lg:px-0 lg:py-0 lg:items-start lg:justify-center overflow-y-auto">
+  <div class="w-full lg:w-full bg-white shadow-xl rounded-2xl p-6 ">
+    
+    <!-- Header solo en móviles -->
+    <div class="flex justify-between items-center mb-4 ">
+      <h2 class="text-sm font-semibold text-gray-600">Edit your search</h2>
+      <button id="cerrar-modal" class="text-lg font-bold text-gray-700 cursor-pointer px-2  hover:bg-gray-300 transition duration-300 ease-in-out">X</button>
+    </div>
+
+    <!-- Inputs -->
+    <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+      <!-- Location -->
+      <div class="relative flex-1 border rounded-xl px-4 py-2 focus-within:ring-2 focus-within:ring-red-400">
+        <p class="text-xs font-semibold text-gray-400 uppercase">Location</p>
+        <input id="input-location" type="text" placeholder="Add location" class="w-full text-sm text-gray-800 focus:outline-none" />
+        <ul id="lista-sugerencias" class="mt-3 right-0.5  text-sm text-gray-700 bg-white border border-gray-300 rounded-xl shadow-md hidden absolute z-50 w-full max-h-40 overflow-y-auto">
+        </ul>
+      </div>
+
+      <!-- Guests -->
+      <div class="flex-1 border rounded-xl px-4 py-2 focus-within:ring-2 focus-within:ring-red-400">
+        <p class="text-xs font-semibold text-gray-400 uppercase">Guests</p>
+        <input id="input-guests" type="text" placeholder="Add guests" class="w-full text-sm text-gray-800 focus:outline-none" readonly />
+      </div>
+
+      <!-- Search button -->
+      <div class="flex justify-center mt-2 lg:mt-0">
+        <button id="btn-buscar" class="bg-red-500 cursor-pointer active:bg-red-900 text-white rounded-full px-6 py-3 font-medium flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M21 20l-5.6-5.6a7 7 0 10-1.4 1.4L20 21zM10 16a6 6 0 110-12 6 6 0 010 12z"/>
+          </svg>
+          Search
+        </button>
+      </div>
+    </div>
+
+    <!-- Guests details -->
+    <div class="mt-6 grid gap-6 lg:flex lg:flex-col lg:items-center  ">
+      <!-- Adults -->
+      <div>
+        <p class="text-sm font-semibold text-gray-800">Adults</p>
+        <p class="text-xs text-gray-400">Ages 13 or above</p>
+        <div class="flex items-center space-x-4 mt-2">
+          <button class="btn-disminuir-adult cursor-pointer bg-gray-200 hover:bg-gray-300 transition px-2 py-1 rounded">-</button>
+          <span id="adult-count" class="w-6 text-center">0</span>
+          <button class="btn-aumentar-adult cursor-pointer bg-gray-200 hover:bg-gray-300 transition px-2 py-1 rounded">+</button>
+        </div>
+      </div>
+
+      <!-- Children -->
+      <div>
+        <p class="text-sm font-semibold text-gray-800">Children</p>
+        <p class="text-xs text-gray-400">Ages 13 or above</p>
+        <div class="flex items-center space-x-4 mt-2">
+          <button class="btn-disminuir-child cursor-pointer bg-gray-200 hover:bg-gray-300 transition px-2 py-1 rounded">-</button>
+          <span id="child-count" class="w-6 text-center">0</span>
+          <button class="btn-aumentar-child cursor-pointer bg-gray-200 hover:bg-gray-300 transition px-2 py-1 rounded">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cerrar en escritorio -->
+    <div class="w-auto bg-red-400 mt-6  flex justify-center py-2 rounded-2xl  ">
+      <button id="cerrar-modal-2" class="w-full text-sm font-semibold text-white cursor-pointer">Close</button>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
