@@ -17,7 +17,7 @@ export function crearTarjetaEstancia(stay) {
             ${superHost ? '<span class="px-2 py-1 border rounded-full text-xs font-bold text-gray-700 border-gray-700 dark:border-white dark:text-red-800" >SUPERHOST</span>' : ''}
             <span class="dark:text-green-600">${type}${beds !== null ? ` · ${beds} beds` : ''}</span>
           </div>
-          <div class="flex items-center font-medium">
+          <div class="flex items-center font-medium dark:text-white">
             <svg class="w-4 h-4 mr-1 fill-current text-red-500 dark:text-yellow-300" viewBox="0 0 20 20">
               <path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z"/>
             </svg>

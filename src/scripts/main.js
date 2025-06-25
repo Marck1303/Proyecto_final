@@ -52,15 +52,15 @@ cerrarBtn.addEventListener("click", () => {
   document.body.classList.remove("overflow-hidden");
 });
 
-
-const cerrarBtn2 = document.getElementById("cerrar-modal-2");
+//btn hecho para un boton close
+/* const cerrarBtn2 = document.getElementById("cerrar-modal-2");
 
 if (cerrarBtn2) {
   cerrarBtn2.addEventListener("click", () => {
     modal.classList.add("hidden");
     document.body.classList.remove("overflow-hidden");
   });
-}
+} */
 
 
 export function mostrarEstanciasFiltradas(lista) {

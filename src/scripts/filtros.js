@@ -6,7 +6,7 @@ import { crearTarjetaEstancia } from './utils.js';
 
 const inputLocation = document.getElementById('input-location');
 const inputGuests = document.getElementById('input-guests');
-const btnBuscar = document.getElementById('btn-buscar');
+const btnBuscar = document.querySelectorAll('.btn-buscar');
 const contenedor = document.getElementById('contenedor-hoteles');
 const adultCountSpan = document.getElementById('adult-count');
 const childCountSpan = document.getElementById('child-count');
@@ -68,7 +68,8 @@ function mostrarEstanciasFiltradas() {
   actualizarContador(filtradas.length);
 }
 
-btnBuscar.addEventListener('click', () => {
+btnBuscar.forEach(boton => {
+  boton.addEventListener("click", () => {
   mostrarEstanciasFiltradas();
   document.getElementById('modal-busqueda').classList.add('hidden');
   document.body.classList.remove('overflow-hidden');
@@ -80,7 +81,7 @@ btnBuscar.addEventListener('click', () => {
   adultCountSpan.textContent = '0';
   childCountSpan.textContent = '0';
 });
-
+});
 
 
 const listaSugerencias = document.getElementById('lista-sugerencias');
