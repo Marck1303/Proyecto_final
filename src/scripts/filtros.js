@@ -52,7 +52,6 @@ btnDisminuirChild.addEventListener('click', () => {
   actualizarInputGuests();
 });
 
-
 function mostrarEstanciasFiltradas() {
   const ubicacion = inputLocation.value.toLowerCase();
   const cantidad = adultos + ninos;
@@ -60,13 +59,13 @@ function mostrarEstanciasFiltradas() {
     const matchCiudad = ubicacion ? stay.city.toLowerCase().includes(ubicacion) : true;
     const matchCapacidad = cantidad ? stay.maxGuests >= cantidad : true;
     return matchCiudad && matchCapacidad;
-
+    
     
   });
 
   contenedor.innerHTML = '';
   filtradas.forEach(stay => contenedor.appendChild(crearTarjetaEstancia(stay)));
-  actualizarContador(filtradas.length); // 👈 Añade esto
+  actualizarContador(filtradas.length);
 }
 
 btnBuscar.addEventListener('click', () => {

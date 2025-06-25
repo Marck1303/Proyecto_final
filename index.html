@@ -44,7 +44,7 @@
   </section>
   
 <!-- Modal de Búsqueda -->
-<div id="modal-busqueda" class="fixed inset-0 z-50 hidden bg-white bg-opacity-95 px-4 py-6 lg:px-0 lg:py-0 lg:items-start lg:justify-center overflow-y-auto">
+<div id="modal-busqueda" class="fixed inset-0  hidden bg-white/70 backdrop-blur-md px-4 py-6  ">
   <div class="w-full lg:w-full bg-white shadow-xl rounded-2xl p-6 ">
     
     <!-- Header solo en móviles -->
@@ -59,9 +59,10 @@
       <div class="relative flex-1 border rounded-xl px-4 py-2 focus-within:ring-2 focus-within:ring-red-400">
         <p class="text-xs font-semibold text-gray-400 uppercase">Location</p>
         <input id="input-location" type="text" placeholder="Add location" class="w-full text-sm text-gray-800 focus:outline-none" />
-        <ul id="lista-sugerencias" class="mt-3 right-0.5  text-sm text-gray-700 bg-white border border-gray-300 rounded-xl shadow-md hidden absolute z-50 w-full max-h-40 overflow-y-auto">
+        <ul id="lista-sugerencias" class="mt-3 right-0.5  text-sm text-gray-700 bg-white border border-gray-300 rounded-xl shadow-md hidden relative md:absolute lg:absolute z-50 w-full max-h-40 overflow-y-auto">
         </ul>
       </div>
+      
 
       <!-- Guests -->
       <div class="flex-1 border rounded-xl px-4 py-2 focus-within:ring-2 focus-within:ring-red-400">
