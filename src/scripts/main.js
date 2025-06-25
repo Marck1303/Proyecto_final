@@ -73,3 +73,13 @@ export function mostrarEstanciasFiltradas(lista) {
 
   actualizarContador(lista.length); // ⬅️ Aquí también
 }
+
+const btnToggleDark = document.getElementById("btn-toggle-dark");
+const html = document.documentElement;
+const iconoSol = document.getElementById("icono-sol");
+const iconoLuna = document.getElementById("icono-luna");
+btnToggleDark.addEventListener("click", () => {
+  html.classList.toggle("dark");
+  iconoSol.classList.toggle("hidden");
+  iconoLuna.classList.toggle("hidden");
+});
