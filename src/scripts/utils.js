@@ -26,8 +26,8 @@ export function crearTarjetaEstancia(stay) {
         </div>
         <h3 class="text-base font-semibold text-gray-800 dark:text-white">${title}</h3>
         <div class="flex justify-between">
-          <h3 class="text-gray-400">${city}</h3>
-          <h3 class="text-gray-400">Max Guests: ${maxGuests}</h3>
+          <h3 class="text-gray-400 dark:text-gray-300">City: ${city}</h3>
+          <h3 class="text-gray-400 dark:text-gray-300">Max Guests: ${maxGuests}</h3>
         </div>
       </div>
     `;
