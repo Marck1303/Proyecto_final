@@ -13,23 +13,6 @@ export function actualizarContador(cantidad) {
 }
 
 
-  /**
- * Renderiza todas las estancias en el contenedor
- */
-function mostrarEstancias() {
-    const contenedor = document.getElementById('contenedor-hoteles');
-    contenedor.innerHTML = ''; // Limpiar contenido previo
-  
-    stays.forEach((stay) => {
-      const tarjeta = crearTarjetaEstancia(stay);
-      contenedor.appendChild(tarjeta);
-    });
-  }
-  actualizarContador(stays.length); // ⬅️ Aquí
-  
-  // Ejecutar al cargar
-  document.addEventListener('DOMContentLoaded', mostrarEstancias);
-  
 
 //Filtrosmodal
 
@@ -82,4 +65,24 @@ btnToggleDark.addEventListener("click", () => {
   html.classList.toggle("dark");
   iconoSol.classList.toggle("hidden");
   iconoLuna.classList.toggle("hidden");
+});
+
+
+import { mostrarSkeletons } from './utils.js';
+
+//Renderizar la carga del array con con los skeletons al cargar
+document.addEventListener('DOMContentLoaded', () => {
+  mostrarSkeletons(); // Mostrar placeholders al inicio
+
+  setTimeout(() => {
+    const contenedor = document.getElementById('contenedor-hoteles');
+    contenedor.innerHTML = ''; // Limpiar los skeletons
+
+    stays.forEach(stay => {
+      const tarjeta = crearTarjetaEstancia(stay);
+      contenedor.appendChild(tarjeta);
+    });
+
+    actualizarContador(stays.length);
+  }, 1000); // Espera 1 segundo para simular carga
 });

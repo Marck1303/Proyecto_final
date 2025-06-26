@@ -43,11 +43,20 @@
   <!-- Sección de resultados-->
   <section class="px-4 lg:px-13 pt-2">
     <div class="flex justify-between items-center mb-4">
-        <h2 class="text-lg font-semibold">Stays in Finland</h2>
+        <div class="flex flex-col md:flex-row md:items-center md:gap-32 w-full">
+          <h2 class="text-lg font-semibold">Stays in Finland</h2>
+          <select id="orden-select" class="p-2 rounded-lg border border-gray-300 text-sm text-gray-700 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 transition">
+            <option value="default">Ordenar por...</option>
+            <option value="rating-desc">⭐ Rating alto a bajo</option>
+            <option value="rating-asc">⭐ Rating bajo a alto</option>
+            <option value="guests-desc">👨‍👩‍👧 Más huéspedes</option>
+            <option value="guests-asc">👶 Menos huéspedes</option>
+          </select>
+        </div>
         <span id="contador-estancias" class="text-sm text-gray-500 dark:text-white hidden md:block"></span>
     </div>
   
-    <div id="contenedor-hoteles" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div id="contenedor-hoteles" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-5">
       
     </div>
   </section>

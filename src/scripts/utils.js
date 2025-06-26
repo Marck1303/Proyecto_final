@@ -33,3 +33,24 @@ export function crearTarjetaEstancia(stay) {
     `;
     return tarjeta;
   }
+
+//Funcion para agregar skeletons a las cargas de los contenidos(filtrado , orden , y carga de la pagina)
+  
+export function mostrarSkeletons(cantidad = 6) {
+  const contenedor = document.getElementById('contenedor-hoteles');
+  contenedor.innerHTML = ''; // Limpia antes de insertar
+
+  for (let i = 0; i < cantidad; i++) {
+    const skeleton = document.createElement('div');
+    skeleton.className = 'animate-pulse rounded-xl overflow-hidden shadow-md bg-gray-200 dark:bg-gray-700';
+    skeleton.innerHTML = `
+      <div class="w-full h-52 bg-gray-300 dark:bg-gray-600"></div>
+      <div class="p-4 space-y-2">
+        <div class="h-4 bg-gray-300 dark:bg-gray-600 rounded w-3/4"></div>
+        <div class="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/2"></div>
+        <div class="h-4 bg-gray-300 dark:bg-gray-600 rounded w-2/3"></div>
+      </div>
+    `;
+    contenedor.appendChild(skeleton);
+  }
+}

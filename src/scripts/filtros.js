@@ -55,17 +55,39 @@ btnDisminuirChild.addEventListener('click', () => {
 function mostrarEstanciasFiltradas() {
   const ubicacion = inputLocation.value.toLowerCase();
   const cantidad = adultos + ninos;
-  const filtradas = stays.filter(stay => {
-    const matchCiudad = ubicacion ? stay.city.toLowerCase().includes(ubicacion) : true;
-    const matchCapacidad = cantidad ? stay.maxGuests >= cantidad : true;
-    return matchCiudad && matchCapacidad;
-    
-    
-  });
+  const orden = ordenSelect.value;
 
-  contenedor.innerHTML = '';
-  filtradas.forEach(stay => contenedor.appendChild(crearTarjetaEstancia(stay)));
-  actualizarContador(filtradas.length);
+  mostrarSkeletons(); // Mostramos los placeholders
+
+  setTimeout(() => {
+    const filtradas = stays.filter(stay => {
+      const matchCiudad = ubicacion ? stay.city.toLowerCase().includes(ubicacion) : true;
+      const matchCapacidad = cantidad ? stay.maxGuests >= cantidad : true;
+      return matchCiudad && matchCapacidad;
+    });
+
+    // Ordenamiento
+    switch (orden) {
+      case 'rating-desc':
+        filtradas.sort((a, b) => b.rating - a.rating);
+        break;
+      case 'rating-asc':
+        filtradas.sort((a, b) => a.rating - b.rating);
+        break;
+      case 'guests-desc':
+        filtradas.sort((a, b) => b.maxGuests - a.maxGuests);
+        break;
+      case 'guests-asc':
+        filtradas.sort((a, b) => a.maxGuests - b.maxGuests);
+        break;
+    }
+
+    // Reemplazamos skeletons por resultados reales
+    contenedor.innerHTML = '';
+    filtradas.forEach(stay => contenedor.appendChild(crearTarjetaEstancia(stay)));
+    actualizarContador(filtradas.length);
+
+  }, 1000); // Delay de 1 segundo
 }
 
 btnBuscar.forEach(boton => {
@@ -122,3 +144,12 @@ document.addEventListener('click', (e) => {
     listaSugerencias.classList.add('hidden');
   }
 });
+//filtro para ordenar 
+const ordenSelect = document.getElementById('orden-select');
+
+ordenSelect.addEventListener('change', () => {
+  mostrarEstanciasFiltradas(); // vuelve a filtrar y se ordena automáticamente
+});
+
+
+import { mostrarSkeletons } from './utils.js';
