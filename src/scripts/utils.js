@@ -54,3 +54,6 @@ export function mostrarSkeletons(cantidad = 6) {
     contenedor.appendChild(skeleton);
   }
 }
+
+
+//agregar un fixed para que el header baje junto con el scroll

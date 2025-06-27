@@ -19,13 +19,13 @@ export function actualizarContador(cantidad) {
   // Referencias
 const modal = document.getElementById("modal-busqueda");
 const cerrarBtn = document.getElementById("cerrar-modal");
-const inputsBusqueda = document.querySelectorAll("input"); // o puedes usar IDs específicos
+const inputsBusqueda = document.querySelectorAll("input");
 
 // Mostrar modal al hacer focus en los inputs
 inputsBusqueda.forEach(input => {
   input.addEventListener("focus", () => {
     modal.classList.remove("hidden");
-    document.body.classList.add("overflow-hidden"); // Evita scroll
+    document.body.classList.add("overflow-hidden"); // Evitar scroll
   });
 });
 

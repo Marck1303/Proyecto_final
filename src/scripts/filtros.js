@@ -3,6 +3,7 @@
 import { stays } from './stays.js';
 import { actualizarContador } from './main.js';
 import { crearTarjetaEstancia } from './utils.js';
+import { mostrarSkeletons } from './utils.js';
 
 const inputLocation = document.getElementById('input-location');
 const inputGuests = document.getElementById('input-guests');
@@ -52,6 +53,7 @@ btnDisminuirChild.addEventListener('click', () => {
   actualizarInputGuests();
 });
 
+//Funcion para mostrar las estancias , despues de los skeletons y orden para stays
 function mostrarEstanciasFiltradas() {
   const ubicacion = inputLocation.value.toLowerCase();
   const cantidad = adultos + ninos;
@@ -90,6 +92,7 @@ function mostrarEstanciasFiltradas() {
   }, 1000); // Delay de 1 segundo
 }
 
+//Boton que realiza la busqueda al  hacer clic usando la funcion mostrarEstancias donde esta el filtro , y esconder al dar clic
 btnBuscar.forEach(boton => {
   boton.addEventListener("click", () => {
   mostrarEstanciasFiltradas();
@@ -106,9 +109,8 @@ btnBuscar.forEach(boton => {
 });
 
 
+// Obtener ciudades únicas ,al escribir en el input se muestre una lista con las sugerencias
 const listaSugerencias = document.getElementById('lista-sugerencias');
-
-// Obtener ciudades únicas
 const ciudades = [...new Set(stays.map(stay => stay.city))]; //new Set(...): elimina duplicados (solo una vez cada ciudad).
 
 inputLocation.addEventListener('input', () => {
@@ -125,20 +127,21 @@ inputLocation.addEventListener('input', () => {
         const item = document.createElement('li');
         item.textContent = ciudad;
         item.className = 'px-4 py-2 cursor-pointer hover:bg-blue-100 ';
-        item.addEventListener('click', () => {
+        item.addEventListener('click', () => {          //Llena el input con la ciudad seleccionada.
           inputLocation.value = ciudad;
           listaSugerencias.classList.add('hidden');
         });
         listaSugerencias.appendChild(item);
       });
     } else {
-      listaSugerencias.classList.add('hidden');
+      listaSugerencias.classList.add('hidden'); //Si no hay coincidencias, oculta la lista.
     }
   } else {
     listaSugerencias.classList.add('hidden');
   }
 });
 
+ //Si haces clic fuera del input o de la lista, oculta las sugerencias.
 document.addEventListener('click', (e) => {
   if (!e.target.closest('#input-location') && !e.target.closest('#lista-sugerencias')) {
     listaSugerencias.classList.add('hidden');
@@ -151,5 +154,3 @@ ordenSelect.addEventListener('change', () => {
   mostrarEstanciasFiltradas(); // vuelve a filtrar y se ordena automáticamente
 });
 
-
-import { mostrarSkeletons } from './utils.js';
